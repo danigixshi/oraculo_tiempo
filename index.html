@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="manifest"         href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <meta name="theme-color" content="#7a00ff">
+
+  <meta charset="UTF-8">
+  <title>Oráculo del Paraguas ☁️🔮</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    .slider-container {
+      margin: 20px auto;
+      max-width: 400px;
+    }
+
+    input[type=range] {
+      width: 100%;
+    }
+
+    .resultado {
+      margin-top: 30px;
+      font-size: 1.8em;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .consejo {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.2em;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .modo {
+      margin-top: 20px;
+    }
+
+    .oscuro {
+      background: #111;
+      color: #eee;
+    }
+
+    .oscuro .resultado {
+      background: #333;
+      color: #fff;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      background: #7a00ff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4d00aa;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>☁️ Oráculo del Paraguas 🔮</h1>
+
+  <div class="slider-container">
+    <label for="probabilidad">Probabilidad de lluvia: <span id="valor">0.5</span></label>
+    <input type="range" id="probabilidad" min="0" max="1" step="0.01" value="0.5" oninput="actualizarValor(this.value)">
+  </div>
+
+  <button onclick="decidir()">Consultar al clima</button>
+
+  <div id="respuesta" class="resultado"></div>
+  <div id="consejo" class="consejo"></div>
+
+  <div class="modo">
+    <label><input type="checkbox" id="toggleOscuro" onchange="cambiarModo()"> 🌙 Modo oscuro</label>
+  </div>
+
+  <script>
+    const consejosLluvia = [
+      "🌧️ Hoy los cielos conspiran con gotas suaves… no tientes al destino, lleva paraguas.",
+      "💦 El universo huele a tierra mojada. Prepárate para lo inevitable.",
+      "☔ Las nubes cargan secretos húmedos… que podrían caer sobre tu peinado.",
+      "🧙‍♂️ Un viejo druida dijo: 'Cuando dudas... mejor mojarte con estilo'. Lleva paraguas.",
+      "⚡ El destino está nublado, y tu camisa también lo estará si no te cuidas."
+    ];
+
+    const consejosSol = [
+      "🌞 Hoy los astros se alinean para que dejes el paraguas en casa y tomes vitamina D.",
+      "🕊️ Los pajarillos cantan, las nubes duermen. Disfruta del paseo.",
+      "🌤️ El clima sonríe... aprovecha y haz lo mismo.",
+      "😎 El sol es tu aliado hoy. Lleva gafas, no paraguas.",
+      "🌈 La atmósfera está de buen humor. Tú también deberías."
+    ];
+
+    function actualizarValor(valor) {
+      document.getElementById("valor").textContent = valor;
+    }
+
+    function decidir() {
+      const prob = parseFloat(document.getElementById("probabilidad").value);
+      const dado = Math.random();
+      const respuesta = document.getElementById("respuesta");
+      const consejo = document.getElementById("consejo");
+
+      if (dado < prob) {
+        respuesta.textContent = "💧 Alta probabilidad de lluvia, ¡lleva paraguas!";
+        respuesta.style.background = "#b3e0ff";
+        respuesta.style.color = "#004466";
+        consejo.textContent = consejosLluvia[Math.floor(Math.random() * consejosLluvia.length)];
+      } else {
+        respuesta.textContent = "🌞 Parece que no lloverá, deja el paraguas en casa.";
+        respuesta.style.background = "#ffe29a";
+        respuesta.style.color = "#664400";
+        consejo.textContent = consejosSol[Math.floor(Math.random() * consejosSol.length)];
+      }
+    }
+
+    function cambiarModo() {
+      document.body.classList.toggle("oscuro");
+    }
+  </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log("🧙‍♂️ Service Worker registrado"))
+      .catch(err => console.error("💥 Error con SW:", err));
+  }
+</script>
+
+
+</body>
+</html>
+

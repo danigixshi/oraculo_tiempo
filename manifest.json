@@ -1,0 +1,21 @@
+{
+  "name": "Oráculo del Paraguas",
+  "short_name": "Paraguas",
+  "description": "Consulta mística sobre si llevar paraguas o no",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7a00ff",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
