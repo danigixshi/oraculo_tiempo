@@ -32,9 +32,3 @@ Combina una lógica estocástica + frases generadas por IA que **simulan un hor�
 
 ---
 
-## 🛠️ Cómo instalar localmente
-
-```bash
-git clone https://github.com/TU-USUARIO/oraculo-paraguas.git
-cd oraculo-paraguas
-# Luego abre index.html en tu navegador
